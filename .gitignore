@@ -1,0 +1,6 @@
+# .Net build
+bin/
+obj/
+
+# VS Code
+.vscode/
