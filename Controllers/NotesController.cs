@@ -55,12 +55,6 @@ namespace NotesApi.Controllers
             return _service.AddNote(newNote);
         }
 
-        // PUT api/notes/5
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody] string value)
-        // {
-        // }
-
         // DELETE api/notes/5
         [HttpDelete("{id}")]
         public IActionResult Delete(long id)
@@ -73,6 +67,19 @@ namespace NotesApi.Controllers
             catch (System.Exception ex)
             {
                 return StatusCode((int)HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<Note> Update([FromBody] NoteInput note, long id)
+        {
+            try
+            {
+                return Ok(_service.UpdateNote(id, note));
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }
